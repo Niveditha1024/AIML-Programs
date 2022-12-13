@@ -1,0 +1,97 @@
+import numpy as np
+import pandas as pd
+df = pd.DataFrame({"date" : pd.date_range (start = "2020-05-01", periods = 100, freq = "D"),
+                   "temperature": np.random.randint(18, 30, size = 100) + np.random.random(100).round(1)
+})
+df.head()
+
+Output:-
+date	temperature
+0	2020-05-01	26.3
+1	2020-05-02	24.6
+2	2020-05-03	26.8
+3	2020-05-04	25.6
+4	2020-05-05	20.5
+
+df["temperature_log_1"] = df["temperature"].shift(1, fill_value = df.temperature.min())
+df.head()
+
+Output:-
+	date	temperature	temperature_log_1
+0	2020-05-01	26.3	18.2
+1	2020-05-02	24.6	26.3
+2	2020-05-03	26.8	24.6
+3	2020-05-04	25.6	26.8
+4	2020-05-05	20.5	25.6
+
+df_weekly = df.resample("W", on = "date").mean()
+df_weekly.head()
+
+Output:-
+	temperature	temperature_log_1
+date		
+2020-05-03	25.900000	23.033333
+2020-05-10	24.257143	24.428571
+2020-05-17	26.500000	26.871429
+2020-05-24	25.700000	24.914286
+2020-05-31	22.742857	23.971429
+
+df.set_index("date").asfreq("W").head()
+
+Output:-
+temperature	temperature_log_1
+date		
+2020-05-03	26.8	24.6
+2020-05-10	25.6	23.8
+2020-05-17	23.0	28.2
+2020-05-24	28.5	27.4
+2020-05-31	19.9	28.7
+
+df.set_index("date").rolling(3).mean().head()
+
+Output:-
+temperature	temperature_log_1
+date		
+2020-05-01	NaN	NaN
+2020-05-02	NaN	NaN
+2020-05-03	25.900000	23.033333
+2020-05-04	25.666667	25.900000
+2020-05-05	24.300000	25.666667
+
+df.set_index('date').rolling(3, center = True).mean().head()
+
+Output:-
+temperature	temperature_log_1
+date		
+2020-05-01	NaN	NaN
+2020-05-02	25.900000	23.033333
+2020-05-03	25.666667	25.900000
+2020-05-04	24.300000	25.666667
+2020-05-05	24.766667	24.300000
+
+Excel:-
+
+import pandas as pd
+df = pd.read_excel("C:/Users/CSE WPT/Desktop/Marks.xlsx")
+print(df)
+
+Output:-
+        Name  CIE 1  CIE 2  Course
+0  Nisarga N      5      6    Java
+1  Nisarga N      1      2  Python
+2  Niveditha     10     20    Java
+3  Niveditha     15     25  Python
+4    Pallavi      1      2    Java
+5    Pallavi      4      4  Python
+
+df1 = df.pivot(index = "CIE 1", columns = "Name", values = "Course")
+print(df1)
+
+Output:-
+Name  Nisarga N Niveditha Pallavi
+CIE 1                            
+1        Python       NaN    Java
+4           NaN       NaN  Python
+5          Java       NaN     NaN
+10          NaN      Java     NaN
+15          NaN    Python     NaN
