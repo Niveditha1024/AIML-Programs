@@ -1,0 +1,98 @@
+import numpy as np
+my_list = [1,2,2,2,4,5,6,6,6,9,10,10,10,10,11,14,14,15,18,19,20]
+def get_mean(my_data):
+    return sum(my_data)/(len(my_data)*1.0)
+get_mean(my_list)
+
+9.238095238095237
+
+my_np_list = np.asarray(my_list)
+
+np.mean(my_np_list)
+
+9.238095238095237
+
+my_list.append(100)
+
+get_mean(my_list)
+
+17.130434782608695
+
+np.median(my_list)
+
+10.0
+
+my_list
+
+[1,
+ 2,
+ 2,
+ 2,
+ 4,
+ 5,
+ 6,
+ 6,
+ 6,
+ 9,
+ 10,
+ 10,
+ 10,
+ 10,
+ 11,
+ 14,
+ 14,
+ 15,
+ 18,
+ 19,
+ 20,
+ 100,
+ 100]
+
+np.median(my_np_list)
+
+10.0
+
+my_np_list
+
+array([ 1,  2,  2,  2,  4,  5,  6,  6,  6,  9, 10, 10, 10, 10, 11, 14, 14,
+       15, 18, 19, 20])
+
+from scipy.stats import mode
+mode(my_list)
+
+ModeResult(mode=array([10]), count=array([4]))
+
+my_list_str = ['a','b','c','b','b','c','a'
+
+my_list_str = ['a','b','c','b','b','c','a','a','b','d']
+mode(my_list_str)
+
+ModeResult(mode=array(['b'], dtype='<U1'), count=array([4]))
+
+import numpy as np
+
+my_list = np.asarray([1,2,2,2,4,5,6,6,6,9,10,10,10,10,11,14,14,15,18,19,20])
+
+np.var(my_list)
+
+​32.08616780045352
+
+np.std(my_list)
+
+5.664465358747771
+
+np.mean(my_list)
+
+9.238095238095237
+
+lower_range = 9.2 - 5.8
+
+higher_range = 9.2 + 5.8
+
+lower_range
+
+3.3999999999999995
+
+higher_range
+
+15.0
