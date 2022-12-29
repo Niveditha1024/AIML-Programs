@@ -1,0 +1,25 @@
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt
+import seaborn as sns
+df=pd.read_csv('C:/Users/CSE WPT/Desktop/iris.csv')
+df
+
+df.describe()
+
+df.isnull().sum()
+
+del df['Id']
+df
+
+#Exploratory Data Analysis
+df.shape
+
+#Univarite Analysis
+df_setosa=df.loc[df['species']=='Iris-setosa']
+
+df_virginica=df.loc[df['species']=='Iris-virginica']
+
+df_versicolor=df.loc[df['species']=='Iris-versicolor']
+
+plt.plot(df_setosa['SepalLengthCm'],np.zeros_like(df_setosa['SepalLengthCm']))
