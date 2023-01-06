@@ -1,0 +1,23 @@
+import pandas as pd
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+
+df=pd.read_csv('D:/breast-cancer.csv')
+df
+
+X,y=load_breast_cancer(return_X_y=True)
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=3)
+
+model=RandomForestClassifier()
+
+model.fit(X_train,y_train)
+
+accuracy=model.score(X_test,y_test)
+print('Accuracy: {:.2f}'.format(accuracy))
+
+prediction=model.predict(X_test)
+prediction
+
